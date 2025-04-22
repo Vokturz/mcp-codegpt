@@ -19,16 +19,7 @@ const server = new McpServer({
 
 const CODEGPT_ORG_ID = process.env.CODEGPT_ORG_ID || "";
 const CODEGPT_API_KEY = process.env.CODEGPT_API_KEY || "";
-const CODEGPT_GRAPH_ID = process.env.GRAPH_ID || "";
-
-
-if (!CODEGPT_API_KEY) {
-	throw new Error("CODEGPT_API_KEY is not set");
-}
-
-if (!CODEGPT_GRAPH_ID) {
-	throw new Error("CODEGPT_GRAPH_ID is not set");
-}
+const CODEGPT_GRAPH_ID = process.env.CODEGPT_GRAPH_ID || "";
 
 server.tool(
 	"get-code",
@@ -322,6 +313,14 @@ server.tool(
   );
 
 async function main() {
+	if (!CODEGPT_API_KEY) {
+		throw new Error("CODEGPT_API_KEY is not set");
+	}
+	
+	if (!CODEGPT_GRAPH_ID) {
+		throw new Error("CODEGPT_GRAPH_ID is not set");
+	}
+
 	const transport = new StdioServerTransport();
 	await server.connect(transport);
 	console.error("CodeGPT Agents MCP Server running on stdio");
