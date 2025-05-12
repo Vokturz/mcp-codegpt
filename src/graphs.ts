@@ -7,8 +7,8 @@ dotenv.config();
 
 const CODEGPT_API_BASE = "http://localhost:8000/api/v1";
 const server = new McpServer({
-	name: "CodeGPT",
-	version: "1.0.0",
+	name: "CodeGPT Graphs",
+	version: "1.0.1",
 	config: {
 		timeout: 120000,
 	},
